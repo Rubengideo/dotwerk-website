@@ -48,9 +48,9 @@ fs.copyFileSync(path.join(root, 'src/site.js'), path.join(out, 'site.js'));
 fs.cpSync(path.join(root, 'ds'), path.join(out, 'ds'), {recursive: true});
 fs.cpSync(path.join(root, 'public'), out, {recursive: true});
 
-// Decap CMS: het inlogadres moet naar dit eigen domein wijzen.
-fs.copyFileSync(path.join(root, 'admin/index.html'), path.join(out, 'admin/index.html'));
-const origin = seo.url ? seo.url.replace(/\/$/, '') : 'http://localhost:3000';
-fs.writeFileSync(path.join(out, 'admin/config.yml'), read('admin/config.yml').replaceAll('__SITE_ORIGIN__', origin));
+// Beheer (/admin): gebruikt dezelfde render-code en stijl als de site.
+fs.cpSync(path.join(root, 'admin'), path.join(out, 'admin'), {recursive: true});
+fs.copyFileSync(path.join(root, 'src/render.mjs'), path.join(out, 'admin/render.mjs'));
+fs.copyFileSync(path.join(root, 'src/site.css'), path.join(out, 'site.css'));
 
 console.log('Gebouwd naar dist/ voor ' + (seo.url || '(geen adres)') + (seo.index ? '' : ' (noindex)'));

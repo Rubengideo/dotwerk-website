@@ -1,4 +1,4 @@
-// Start van de GitHub-login voor Decap CMS (/admin).
+// Start van de GitHub-login voor het beheer op /admin.
 // Nodig in Vercel: GITHUB_CLIENT_ID en GITHUB_CLIENT_SECRET van een GitHub OAuth App.
 import crypto from 'node:crypto';
 
@@ -13,7 +13,7 @@ export default function handler(req, res) {
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: `https://${host}/api/callback`,
-    scope: 'repo,user',
+    scope: 'repo',
     state,
   });
   res.setHeader('Set-Cookie', `decap_state=${state}; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=600`);

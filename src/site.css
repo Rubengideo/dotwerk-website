@@ -33,6 +33,7 @@ html,body{background:var(--canvas);color:var(--ink)}
 body{font-family:var(--font-body);font-size:15px;line-height:22px}
 a{color:var(--accent)}
 a.mo-btn{text-decoration:none}
+[hidden]{display:none!important}
 .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .section{padding-block:var(--space-16)}
 .section + .section{border-top:1px solid var(--line)}

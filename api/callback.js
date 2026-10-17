@@ -1,4 +1,4 @@
-// Ruilt de GitHub-code om voor een token en geeft die door aan het Decap-venster.
+// Ruilt de GitHub-code om voor een token en geeft die door aan het beheervenster (/admin).
 function page(status, payload) {
   const message = `authorization:github:${status}:${JSON.stringify(payload)}`;
   return `<!doctype html><html><body><script>

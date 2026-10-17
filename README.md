@@ -1,6 +1,6 @@
 # Dotwerk website
 
-De homepage van Dotwerk, een AI-consultancy voor het mkb. Statische site op Vercel, inhoud te bewerken via Decap CMS op `/admin`.
+De homepage van Dotwerk, een AI-consultancy voor het mkb. Statische site op Vercel, inhoud te bewerken via het eigen beheer op `/admin`.
 
 ## Hoe het werkt
 
@@ -11,22 +11,21 @@ De homepage van Dotwerk, een AI-consultancy voor het mkb. Statische site op Verc
 
 ## Bewerken via /admin
 
-Decap CMS logt in met GitHub en slaat elke wijziging op als commit op `main`. Vercel publiceert die binnen een minuut.
+Het beheer is het paneel uit het oorspronkelijke artifact: de pagina links als live voorbeeld, rechts de velden (tabbladen Inhoud en SEO). Code: `admin/` (`admin.js` gebruikt dezelfde `src/render.mjs` als de build, dus het voorbeeld is exact de live pagina).
 
-Eenmalig nodig: een GitHub OAuth App.
-
-1. Ga naar GitHub → Settings → Developer settings → OAuth Apps → New OAuth App.
-2. Homepage URL: het vercel.app-adres van de site. Authorization callback URL: `<dat adres>/api/callback`.
-3. Zet de Client ID en een nieuw Client secret in Vercel → Project → Settings → Environment Variables als `GITHUB_CLIENT_ID` en `GITHUB_CLIENT_SECRET`, en deploy opnieuw.
+- Inloggen gaat met GitHub via `api/auth.js` en `api/callback.js`. Nodig in Vercel: `GITHUB_CLIENT_ID` en `GITHUB_CLIENT_SECRET` van de GitHub OAuth App "Dotwerk CMS" (callback `<site>/api/callback`).
+- Alleen wie schrijfrechten op deze repository heeft, kan publiceren.
+- Publiceren maakt één commit met `content/home.json` en/of `content/seo.json` op `main`. Vercel bouwt daarna opnieuw, binnen ongeveer een minuut live.
+- Een nieuw veld toevoegen: zet het in `content/home.json`, gebruik het in `src/render.mjs` en voeg het toe aan `SCHEMA` in `admin/admin.js`.
 
 ## Contactformulier
 
-Maak een gratis formulier aan op [formspree.io](https://formspree.io) en zet het adres (`https://formspree.io/f/...`) in het CMS onder Homepagina → Contact → Formulieradres. Leeg betekent dat het formulier niets verstuurt.
+Maak een gratis formulier aan op [formspree.io](https://formspree.io) en zet het adres (`https://formspree.io/f/...`) in het beheer onder Contact → Formulieradres (Formspree). Leeg betekent dat het formulier niets verstuurt.
 
 ## Naar een eigen domein
 
 1. Voeg het domein toe in Vercel → Project → Settings → Domains.
-2. Zet het adres in het CMS onder SEO → Adres van de site.
+2. Zet het adres in het beheer onder SEO → Adres van de site.
 3. Zet "Zoekmachines mogen de site opnemen" aan als de inhoud klaar is. Dan komen er ook een sitemap en index-tags.
 4. Werk de Homepage- en callback-URL van de GitHub OAuth App bij.
 
