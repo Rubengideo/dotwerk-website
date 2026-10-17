@@ -142,7 +142,7 @@ export function headTags(seo,c){
 }
 export function robotsTxt(seo){
   const base=absUrl(seo.url).replace(/\/?$/,'/');
-  return 'User-agent: *\n'+(seo.index?'Allow: /\nDisallow: /admin/':'Disallow: /')+'\n'+(absUrl(seo.url)?'\nSitemap: '+base+'sitemap.xml\n':'');
+  return 'User-agent: *\n'+(seo.index?'Allow: /\nDisallow: /admin/':'Disallow: /')+'\n'+(seo.index&&absUrl(seo.url)?'\nSitemap: '+base+'sitemap.xml\n':'');
 }
 export function sitemapXml(seo){
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>'+esc(seo.url)+'</loc>\n    <lastmod>'+new Date().toISOString().slice(0,10)+'</lastmod>\n  </url>\n</urlset>\n';
