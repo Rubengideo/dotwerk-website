@@ -9,6 +9,10 @@ De homepage van Dotwerk, een AI-consultancy voor het mkb. Statische site op Verc
 - **Vercel** draait die build bij elke push naar `main`. Zonder eigen domein gebruikt de build automatisch het vaste `*.vercel.app`-adres.
 - **Ontwerp**: `ds/bundle.css` en `ds/bundle.js` komen uit het Modulair-ontwerpsysteem. React staat in `ds/vendor/`, zodat de site geen externe scripts laadt.
 
+## Speeltuin (/speeltuin/)
+
+Een etalage van het ontwerpsysteem: de Dots in alle stemmingen, een Dot-bouwer, een live gesimuleerde werkdag en alle bouwstenen. Code: `src/speeltuin.mjs` (HTML en teksten), `src/speeltuin.js` (interactie) en `src/speeltuin.css`. De teksten staan vast in de code en zijn niet via /admin te bewerken.
+
 ## Bewerken via /admin
 
 Het beheer is het paneel uit het oorspronkelijke artifact: de pagina links als live voorbeeld, rechts de velden (tabbladen Inhoud en SEO). Code: `admin/` (`admin.js` gebruikt dezelfde `src/render.mjs` als de build, dus het voorbeeld is exact de live pagina).
