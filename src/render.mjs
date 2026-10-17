@@ -30,6 +30,7 @@ export function renderBody(c){
       <a href="#werkwijze">Werkwijze</a>
       <a href="#regie">Zo werken we</a>
       <a href="#vragen">Vragen</a>
+      <a href="/speeltuin/">Speeltuin</a>
     </nav>
     <a class="mo-btn mo-btn--primary mo-btn--sm" href="#contact">Gesprek plannen</a>
   </div>
@@ -144,6 +145,8 @@ export function robotsTxt(seo){
   const base=absUrl(seo.url).replace(/\/?$/,'/');
   return 'User-agent: *\n'+(seo.index?'Allow: /\nDisallow: /admin/':'Disallow: /')+'\n'+(seo.index&&absUrl(seo.url)?'\nSitemap: '+base+'sitemap.xml\n':'');
 }
-export function sitemapXml(seo){
-  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>'+esc(seo.url)+'</loc>\n    <lastmod>'+new Date().toISOString().slice(0,10)+'</lastmod>\n  </url>\n</urlset>\n';
+export function sitemapXml(seo,extra){
+  const day=new Date().toISOString().slice(0,10), base=seo.url.replace(/\/?$/,'/');
+  const urls=[seo.url].concat((extra||[]).map(p=>base+p));
+  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(u=>'  <url>\n    <loc>'+esc(u)+'</loc>\n    <lastmod>'+day+'</lastmod>\n  </url>\n').join('')+'</urlset>\n';
 }
