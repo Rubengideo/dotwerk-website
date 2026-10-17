@@ -1,0 +1,176 @@
+{
+  "brand": "Dotwerk",
+  "hero": {
+    "eyebrow": "AI-consultancy voor het mkb",
+    "title": "AI-collega's die het saaie werk van je overnemen",
+    "intro": "Wij zoeken uit waar AI in jouw bedrijf echt tijd oplevert, bouwen een werkende pilot in vier weken en leren je team ermee werken. Jij houdt de regie: niets gaat de deur uit zonder jouw goedkeuring.",
+    "ctaPrimary": "Gratis AI-scan aanvragen",
+    "ctaSecondary": "Werkwijze bekijken",
+    "proof": [
+      "Voor bedrijven van 5 tot 250 mensen",
+      "Data blijft in de EU",
+      "Vaste prijs per fase"
+    ]
+  },
+  "sectorsLabel": "Voor onder meer",
+  "sectors": [
+    "Installatiebedrijven",
+    "Accountantskantoren",
+    "Webshops",
+    "Groothandels",
+    "Zorgpraktijken",
+    "Makelaars"
+  ],
+  "services": {
+    "eyebrow": "Diensten",
+    "title": "Van eerste idee tot een team dat er dagelijks mee werkt",
+    "intro": "Je hoeft niet meteen alles om te gooien. Begin klein, zie wat het oplevert en beslis daarna pas over de volgende stap.",
+    "items": [
+      {
+        "name": "AI-scan",
+        "badge": "Gratis",
+        "text": "Een gesprek van een uur waarin we je processen doorlopen en de drie kansen met de meeste tijdwinst op een rij zetten.",
+        "bullets": [
+          "Rapport van twee pagina's",
+          "Schatting van uren per week",
+          "Geen verplichtingen"
+        ],
+        "price": "€ 0",
+        "priceNote": "1 uur, op locatie of online",
+        "featured": false
+      },
+      {
+        "name": "Pilot in 4 weken",
+        "badge": "Meest gekozen",
+        "text": "We bouwen één AI-collega voor één concreet proces, zoals offertes, de inbox of facturen verwerken, en meten wat het oplevert.",
+        "bullets": [
+          "Werkt met je eigen software",
+          "Wekelijkse demo met je team",
+          "Eindmeting in uren en euro's"
+        ],
+        "price": "€ 4.950",
+        "priceNote": "vaste prijs, excl. btw",
+        "featured": true
+      },
+      {
+        "name": "Uitrol en begeleiding",
+        "badge": "Per maand",
+        "text": "Werkt de pilot, dan breiden we uit naar meer processen en trainen we je medewerkers. We blijven meekijken en bijsturen.",
+        "bullets": [
+          "Trainingen op de werkvloer",
+          "Maandelijkse rapportage",
+          "Maandelijks opzegbaar"
+        ],
+        "price": "vanaf € 750",
+        "priceNote": "per maand, excl. btw",
+        "featured": false
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "Werkwijze",
+    "title": "Vier stappen, en na elke stap beslis jij of we doorgaan",
+    "items": [
+      {
+        "title": "Kennismaken",
+        "text": "We horen hoe je bedrijf werkt en waar het knelt. Geen techniek, gewoon een goed gesprek.",
+        "when": "Week 0"
+      },
+      {
+        "title": "AI-scan",
+        "text": "Je krijgt de drie beste kansen op papier, met een eerlijke inschatting van tijdwinst en kosten.",
+        "when": "Week 1"
+      },
+      {
+        "title": "Pilot",
+        "text": "We bouwen één AI-collega die in je eigen systemen meedraait. Je team test hem elke week.",
+        "when": "Week 2 tot 5"
+      },
+      {
+        "title": "Uitrollen",
+        "text": "Levert het op, dan zetten we hem breed in en trainen we iedereen die ermee gaat werken.",
+        "when": "Vanaf week 6"
+      }
+    ]
+  },
+  "principles": {
+    "eyebrow": "Zo werken we",
+    "title": "AI die meedenkt, mensen die beslissen",
+    "intro": "Een AI-collega bereidt voor, zoekt uit en zet klaar. Alles met gevolgen, zoals betalen, mailen naar klanten of iets verwijderen, legt hij eerst aan jou voor.",
+    "items": [
+      {
+        "title": "Jij keurt goed",
+        "text": "Elke actie naar buiten wacht op een knop van jou. Weigeren kan altijd, en dan gebeurt er niets."
+      },
+      {
+        "title": "Je data blijft van jou",
+        "text": "We werken met Europese hosting, sluiten een verwerkersovereenkomst en trainen geen modellen op jouw gegevens."
+      },
+      {
+        "title": "Geen vendor lock-in",
+        "text": "We bouwen op gangbare tools die je al kent. Stop je met ons, dan blijft alles gewoon werken."
+      },
+      {
+        "title": "Eerlijk over wat niet kan",
+        "text": "Levert AI voor een proces te weinig op, dan zeggen we dat in de scan. Ook als dat betekent dat er geen pilot komt."
+      }
+    ]
+  },
+  "case": {
+    "label": "Voorbeeldcase",
+    "meta": "Installatiebedrijf, 14 medewerkers",
+    "quote": "Onze offertes lagen soms drie dagen op de stapel. Nu staat er dezelfde middag een concept klaar dat ik alleen nog hoef na te lopen.",
+    "source": "Fictieve eigenaar, Bakker Installatie. Deze case is een voorbeeld van wat een pilot kan opleveren.",
+    "stats": [
+      {
+        "value": "4 u",
+        "label": "van aanvraag tot offerte, was 3 dagen"
+      },
+      {
+        "value": "11 u",
+        "label": "per week minder administratie"
+      },
+      {
+        "value": "6 wk",
+        "label": "van eerste gesprek tot in gebruik"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Vragen",
+    "title": "Wat ondernemers ons vaak vragen",
+    "items": [
+      {
+        "q": "Is mijn bedrijf niet te klein voor AI?",
+        "a": "Juist niet. In een klein team valt elk uur dat je terugwint meteen op. De meeste winst zit in terugkerend werk zoals mail, offertes, planning en facturen, en dat heeft elk bedrijf."
+      },
+      {
+        "q": "Moeten mijn medewerkers technisch zijn?",
+        "a": "Nee. Een AI-collega werkt in de programma's die je team al gebruikt, zoals Outlook, Exact of je planningstool. Wij verzorgen de training op de werkvloer."
+      },
+      {
+        "q": "Wat gebeurt er met onze gegevens?",
+        "a": "Gegevens blijven binnen de EU en worden niet gebruikt om modellen te trainen. We leggen afspraken vast in een verwerkersovereenkomst die past bij de AVG."
+      },
+      {
+        "q": "Wat als de pilot niets oplevert?",
+        "a": "Dan weet je dat na vier weken voor een vaste prijs, in plaats van na een jaar en een groot project. We meten vooraf afgesproken doelen en je beslist zelf of je doorgaat."
+      },
+      {
+        "q": "Komen jullie ook langs?",
+        "a": "Ja. De scan en de trainingen doen we het liefst bij je op locatie, zodat we zien hoe er echt gewerkt wordt. Online kan ook."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Plan je gratis AI-scan",
+    "intro": "Laat weten wie je bent en waar je tijd aan kwijt bent. Je hoort binnen twee werkdagen van ons.",
+    "email": "hallo@dotwerk.nl",
+    "hours": "Ma t/m vr, 08:30 tot 17:30",
+    "formEndpoint": ""
+  },
+  "footer": {
+    "left": "Dotwerk · AI-consultancy voor het mkb · KvK 00000000",
+    "right": "Dit is een opzet. Namen, prijzen en cases zijn voorbeelden."
+  }
+}
