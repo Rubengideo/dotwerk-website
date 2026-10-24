@@ -1,5 +1,5 @@
 // Zet content/home.json en content/seo.json om in kant-en-klare HTML.
-// De opmaak is 1-op-1 overgenomen uit het Dotwerk-artifact; alleen het beheerpaneel is vervangen door Decap CMS (/admin).
+// De opmaak is 1-op-1 overgenomen uit het Dotwerk-artifact; alleen het beheerpaneel is vervangen door het eigen beheer (/admin).
 
 const ICON = {
   check:'<svg class="mo-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
@@ -10,6 +10,8 @@ const ICON = {
 const LOOKS = [
   {shape:'pebble',color:'sun',accessory:'glasses'},{shape:'circle',color:'cobalt',state:'work'},{shape:'squircle',color:'leaf',accessory:'beret'},
   {shape:'capsule',color:'tomato',accessory:'bow'},{shape:'drop',color:'plum'},{shape:'pebble',color:'sky'}];
+// De Stapel uit Modulair (beeldmerk.svg). Staat stil; alleen in een intro mag hij vallen.
+const STAPEL = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.0 116.0" class="brand__mark" width="36" height="36" aria-hidden="true" focusable="false"><g transform="translate(8 8)"><rect x="10" y="62" width="80" height="32" rx="16" fill="#FF5A36"></rect><ellipse cx="24" cy="70" rx="6" ry="3" fill="#FFFFFF" fill-opacity=".3" transform="rotate(-18 24 70)"></ellipse><ellipse cx="42.00" cy="78.00" rx="3.4" ry="5" fill="#111318"></ellipse><ellipse cx="58.00" cy="78.00" rx="3.4" ry="5" fill="#111318"></ellipse><rect x="22" y="31" width="56" height="30" rx="11" fill="#FFC22E"></rect><ellipse cx="33" cy="38" rx="5" ry="3" fill="#FFFFFF" fill-opacity=".3" transform="rotate(-18 33 38)"></ellipse><ellipse cx="43.00" cy="46.00" rx="3.2" ry="4.8" fill="#111318"></ellipse><ellipse cx="57.00" cy="46.00" rx="3.2" ry="4.8" fill="#111318"></ellipse><circle cx="50" cy="16" r="14" fill="#2F6BFF"></circle><ellipse cx="44" cy="9" rx="4" ry="2.4" fill="#FFFFFF" fill-opacity=".3" transform="rotate(-18 44 9)"></ellipse><ellipse cx="46.00" cy="17.00" rx="2.4" ry="3.6" fill="#111318"></ellipse><ellipse cx="56.00" cy="17.00" rx="2.4" ry="3.6" fill="#111318"></ellipse></g></svg>';
 const SMALL = [
   {shape:'circle',color:'cobalt',state:'wait'},{shape:'capsule',color:'teal'},{shape:'drop',color:'plum'},{shape:'pebble',color:'rose'},
   {shape:'squircle',color:'leaf'},{shape:'circle',color:'sky'}];
@@ -24,7 +26,7 @@ export function renderBody(c){
   return `
 <header class="top">
   <div class="wrap top__in">
-    <a class="brand" href="#top">${dot({shape:'circle',color:'cobalt',interactive:false},28)}<span>${esc(c.brand)}</span></a>
+    <a class="brand" href="#top">${STAPEL}<span>${esc(c.brand)}</span></a>
     <nav class="nav" aria-label="Hoofdmenu">
       <a href="#diensten">Diensten</a>
       <a href="#werkwijze">Werkwijze</a>
@@ -46,7 +48,7 @@ export function renderBody(c){
         <div class="hero__proof">${lines(h.proof).map(p=>'<span>'+ICON.check+esc(p)+'</span>').join('')}</div>
       </div>
       <div class="hero__demo" aria-label="Voorbeeld van een werkdag met AI-collega's">
-        <div class="mo-card demo-card">
+        <div class="mo-card demo-card"><span class="demo-card__perch" aria-hidden="true" style="--s:64px">${dot({shape:'circle',color:'cobalt'},64)}</span>
           <div class="demo-card__head">
             <h2 class="heading-s">Vandaag bij Bakker Installatie</h2>
             <span class="mo-badge">Voorbeeld</span>
@@ -61,7 +63,7 @@ export function renderBody(c){
   </div>
 
   <div class="wrap">
-    <section class="section" id="diensten" aria-labelledby="diensten-title">${head(s,'diensten-title',true)}<div class="grid3">${
+    <section class="section section--first" id="diensten" aria-labelledby="diensten-title">${head(s,'diensten-title',true)}<div class="grid3">${
       (s.items||[]).map((it,i)=>'<article class="mo-card mo-card--padded svc'+(it.featured?' svc--featured':'')+'">'+
         '<div class="svc__top">'+dot(LOOKS[i%LOOKS.length],64)+(it.badge?'<span class="mo-badge '+(it.featured?'mo-badge--solid':i===0?'mo-badge--success':'')+'">'+esc(it.badge)+'</span>':'')+'</div>'+
         '<h3 class="heading-m">'+esc(it.name)+'</h3><p class="body-s">'+esc(it.text)+'</p>'+

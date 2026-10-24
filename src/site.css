@@ -52,7 +52,8 @@ a.mo-btn{text-decoration:none}
 /* header */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--canvas);border-bottom:1px solid var(--line)}
 .top__in{display:flex;align-items:center;gap:var(--space-6);height:64px}
-.brand{display:flex;align-items:center;gap:var(--space-2);font:700 22px/28px var(--font-display);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand{display:flex;align-items:center;gap:10px;font:800 22px/28px var(--font-display);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand__mark{display:block;flex:none;margin-block:-4px}
 .nav{display:flex;gap:var(--space-1);margin-left:auto}
 .nav a{font:600 13px/1 var(--font-body);color:var(--ink-muted);text-decoration:none;padding:10px 12px;border-radius:var(--radius-md)}
 .nav a:hover{color:var(--ink);background:var(--surface-sunken)}
@@ -121,12 +122,41 @@ a.mo-btn{text-decoration:none}
 .foot{border-top:1px solid var(--line);padding-block:var(--space-8);color:var(--ink-muted)}
 .foot__in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-4);font:400 13px/18px var(--font-body)}
 
+/* Achtergrond: één doorlopende kleurovergang over de hele pagina, in zachte tinten van de
+   Dot-kleuren. Warm bovenaan (zon, tomaat), via roze naar koel (lucht, kobalt) en fris onderaan
+   (teal, blad). De vlekken wisselen van kant, zodat de kleur meebeweegt in plaats van per sectie
+   te wisselen. Kaarten blijven dicht, dus de tekst staat altijd op rust. */
+.site{position:relative;--wash:48%}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .site{--wash:26%}}
+:root[data-theme="dark"] .site{--wash:26%}
+.wash{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.wash::before{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(55% 900px at 92% 4%,color-mix(in oklab,var(--dot-sun) var(--wash),transparent),transparent 70%),
+    radial-gradient(45% 800px at 62% 13%,color-mix(in oklab,var(--dot-tomato) calc(var(--wash) * .7),transparent),transparent 70%),
+    radial-gradient(50% 900px at 4% 26%,color-mix(in oklab,var(--dot-rose) calc(var(--wash) * .8),transparent),transparent 70%),
+    radial-gradient(55% 1000px at 96% 42%,color-mix(in oklab,var(--dot-sky) var(--wash),transparent),transparent 70%),
+    radial-gradient(45% 900px at 10% 58%,color-mix(in oklab,var(--dot-cobalt) calc(var(--wash) * .55),transparent),transparent 70%),
+    radial-gradient(55% 1000px at 88% 76%,color-mix(in oklab,var(--dot-teal) calc(var(--wash) * .8),transparent),transparent 70%),
+    radial-gradient(50% 900px at 8% 95%,color-mix(in oklab,var(--dot-leaf) calc(var(--wash) * .6),transparent),transparent 70%)}
+.site>.top,.site>main,.site>.foot{position:relative}
+.site>main,.site>.foot{z-index:1}
+.site>.top{position:sticky;background:color-mix(in srgb,var(--canvas) 70%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);border-bottom-color:color-mix(in srgb,var(--line) 70%,transparent)}
+
+.section,.foot{position:relative}
+.section--first{margin-top:var(--space-12);border-top:1px solid var(--line)}
+.demo-card{position:relative}
+.demo-card__perch{position:absolute;right:var(--space-8);bottom:calc(100% - var(--s) * .08);line-height:0}
+
+::selection{background:var(--accent-soft);color:var(--ink)}
+
 [data-dot]{display:inline-block;flex:none;line-height:0}
 [data-dot]:empty{border-radius:50%;background:var(--surface-sunken)}
 
 @media (max-width:960px){
   .hero,.split,.case,.contact{grid-template-columns:minmax(0,1fr)}
   .hero{gap:var(--space-8);padding-block:var(--space-10) var(--space-12)}
+  .hero__demo{padding-top:var(--space-10)}
   .nav{display:none}
   .top__in .mo-btn{margin-left:auto}
 }
@@ -134,4 +164,5 @@ a.mo-btn{text-decoration:none}
   .display-xl{font-size:40px;line-height:44px}
   .section{padding-block:var(--space-12)}
   .form .row2{grid-template-columns:minmax(0,1fr)}
+  .crew__dot:nth-child(n+3){display:none}
 }

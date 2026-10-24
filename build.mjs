@@ -27,11 +27,16 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 ${headTags(seo, content)}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1014" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/ds/bundle.css">
 <style>
 ${read('src/site.css')}</style>
 </head>
-<body>
+<body class="site">
+<div class="wash" aria-hidden="true"></div>
 ${renderBody(content)}
 <script src="/ds/vendor/react.production.min.js"></script>
 <script src="/ds/vendor/react-dom.production.min.js"></script>
