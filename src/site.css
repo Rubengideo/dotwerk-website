@@ -122,19 +122,29 @@ a.mo-btn{text-decoration:none}
 .foot{border-top:1px solid var(--line);padding-block:var(--space-8);color:var(--ink-muted)}
 .foot__in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-4);font:400 13px/18px var(--font-body)}
 
-/* Speelse achtergrond: het raster als stippenveld (site.js tekent het), met hier en daar
-   confetti in Dot-kleuren en een lens rond de cursor. Dots staan op de scheidingslijnen.
-   Kaarten blijven dicht, dus de tekst staat altijd op rust. */
-.site{position:relative}
-.site>main,.site>.foot{position:relative;z-index:1}
-.field{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+/* Achtergrond: één doorlopende kleurovergang over de hele pagina, in zachte tinten van de
+   Dot-kleuren. Warm bovenaan (zon, tomaat), via roze naar koel (lucht, kobalt) en fris onderaan
+   (teal, blad). De vlekken wisselen van kant, zodat de kleur meebeweegt in plaats van per sectie
+   te wisselen. Kaarten blijven dicht, dus de tekst staat altijd op rust. */
+.site{position:relative;--wash:48%}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .site{--wash:26%}}
+:root[data-theme="dark"] .site{--wash:26%}
+.wash{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.wash::before{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(55% 900px at 92% 4%,color-mix(in oklab,var(--dot-sun) var(--wash),transparent),transparent 70%),
+    radial-gradient(45% 800px at 62% 13%,color-mix(in oklab,var(--dot-tomato) calc(var(--wash) * .7),transparent),transparent 70%),
+    radial-gradient(50% 900px at 4% 26%,color-mix(in oklab,var(--dot-rose) calc(var(--wash) * .8),transparent),transparent 70%),
+    radial-gradient(55% 1000px at 96% 42%,color-mix(in oklab,var(--dot-sky) var(--wash),transparent),transparent 70%),
+    radial-gradient(45% 900px at 10% 58%,color-mix(in oklab,var(--dot-cobalt) calc(var(--wash) * .55),transparent),transparent 70%),
+    radial-gradient(55% 1000px at 88% 76%,color-mix(in oklab,var(--dot-teal) calc(var(--wash) * .8),transparent),transparent 70%),
+    radial-gradient(50% 900px at 8% 95%,color-mix(in oklab,var(--dot-leaf) calc(var(--wash) * .6),transparent),transparent 70%)}
+.site>.top,.site>main,.site>.foot{position:relative}
+.site>main,.site>.foot{z-index:1}
+.site>.top{position:sticky;background:color-mix(in srgb,var(--canvas) 70%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px);border-bottom-color:color-mix(in srgb,var(--line) 70%,transparent)}
 
 .section,.foot{position:relative}
-.section--ground{margin-top:var(--space-12);border-top:1px solid var(--line)}
-.crew{position:absolute;left:0;right:0;bottom:100%;height:0;pointer-events:none}
-/* De Dot-canvas houdt ruimte vrij om te springen; zakt 8% zodat de schaduw op de lijn valt. */
-.crew__dot{position:absolute;bottom:calc(var(--s) * -.08);transform:translateX(-50%);pointer-events:auto;line-height:0}
-.crew__dot [data-dot]{display:block}
+.section--first{margin-top:var(--space-12);border-top:1px solid var(--line)}
 .demo-card{position:relative}
 .demo-card__perch{position:absolute;right:var(--space-8);bottom:calc(100% - var(--s) * .08);line-height:0}
 

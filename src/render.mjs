@@ -12,16 +12,6 @@ const LOOKS = [
   {shape:'capsule',color:'tomato',accessory:'bow'},{shape:'drop',color:'plum'},{shape:'pebble',color:'sky'}];
 // De Stapel uit Modulair (beeldmerk.svg). Staat stil; alleen in een intro mag hij vallen.
 const STAPEL = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.0 116.0" class="brand__mark" width="36" height="36" aria-hidden="true" focusable="false"><g transform="translate(8 8)"><rect x="10" y="62" width="80" height="32" rx="16" fill="#FF5A36"></rect><ellipse cx="24" cy="70" rx="6" ry="3" fill="#FFFFFF" fill-opacity=".3" transform="rotate(-18 24 70)"></ellipse><ellipse cx="42.00" cy="78.00" rx="3.4" ry="5" fill="#111318"></ellipse><ellipse cx="58.00" cy="78.00" rx="3.4" ry="5" fill="#111318"></ellipse><rect x="22" y="31" width="56" height="30" rx="11" fill="#FFC22E"></rect><ellipse cx="33" cy="38" rx="5" ry="3" fill="#FFFFFF" fill-opacity=".3" transform="rotate(-18 33 38)"></ellipse><ellipse cx="43.00" cy="46.00" rx="3.2" ry="4.8" fill="#111318"></ellipse><ellipse cx="57.00" cy="46.00" rx="3.2" ry="4.8" fill="#111318"></ellipse><circle cx="50" cy="16" r="14" fill="#2F6BFF"></circle><ellipse cx="44" cy="9" rx="4" ry="2.4" fill="#FFFFFF" fill-opacity=".3" transform="rotate(-18 44 9)"></ellipse><ellipse cx="46.00" cy="17.00" rx="2.4" ry="3.6" fill="#111318"></ellipse><ellipse cx="56.00" cy="17.00" rx="2.4" ry="3.6" fill="#111318"></ellipse></g></svg>';
-// Dots die op de scheidingslijnen staan. x is de plek op de lijn in procenten van de breedte.
-const CREWS = {
-  diensten:[{x:56,size:64,shape:'squircle',color:'teal'},{x:63,size:40,shape:'circle',color:'sky'},{x:72,size:64,shape:'pebble',color:'leaf',accessory:'beret'},{x:81,size:40,shape:'drop',color:'rose'},{x:88,size:64,shape:'capsule',color:'tomato'}],
-  werkwijze:[{x:7,size:64,shape:'capsule',color:'sun'},{x:14,size:40,shape:'pebble',color:'plum'}],
-  regie:[{x:83,size:40,shape:'drop',color:'plum'},{x:90,size:64,shape:'circle',color:'cobalt',accessory:'glasses'}],
-  case:[{x:46,size:40,shape:'squircle',color:'leaf'}],
-  vragen:[{x:68,size:64,shape:'pebble',color:'sky'},{x:76,size:40,shape:'capsule',color:'rose'},{x:82,size:40,shape:'circle',color:'sun'}],
-  contact:[{x:9,size:40,shape:'circle',color:'teal',accessory:'bow'}],
-  foot:[{x:78,size:40,shape:'squircle',color:'plum'},{x:85,size:64,shape:'drop',color:'leaf'},{x:93,size:40,shape:'pebble',color:'tomato'}]
-};
 const SMALL = [
   {shape:'circle',color:'cobalt',state:'wait'},{shape:'capsule',color:'teal'},{shape:'drop',color:'plum'},{shape:'pebble',color:'rose'},
   {shape:'squircle',color:'leaf'},{shape:'circle',color:'sky'}];
@@ -29,7 +19,6 @@ const SMALL = [
 export function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 const lines=arr=>(arr||[]).filter(s=>String(s).trim());
 const dot=(look,size)=>'<span data-dot=\''+esc(JSON.stringify(Object.assign({size},look)))+'\' style="width:'+size+'px;height:'+size+'px"></span>';
-const crew=k=>'<div class="crew" aria-hidden="true">'+CREWS[k].map((d,i)=>'<span class="crew__dot" style="left:'+d.x+'%;--s:'+d.size+'px">'+dot(Object.assign({interactive:true},d,{x:undefined}),d.size)+'</span>').join('')+'</div>';
 const head=(s,id,withIntro)=>'<div class="sec-head"><p class="eyebrow">'+esc(s.eyebrow)+'</p><h2 class="heading-l" id="'+id+'">'+esc(s.title)+'</h2>'+(withIntro&&s.intro?'<p class="body-l">'+esc(s.intro)+'</p>':'')+'</div>';
 
 export function renderBody(c){
@@ -74,7 +63,7 @@ export function renderBody(c){
   </div>
 
   <div class="wrap">
-    <section class="section section--ground" id="diensten" aria-labelledby="diensten-title">${crew('diensten')}${head(s,'diensten-title',true)}<div class="grid3">${
+    <section class="section section--first" id="diensten" aria-labelledby="diensten-title">${head(s,'diensten-title',true)}<div class="grid3">${
       (s.items||[]).map((it,i)=>'<article class="mo-card mo-card--padded svc'+(it.featured?' svc--featured':'')+'">'+
         '<div class="svc__top">'+dot(LOOKS[i%LOOKS.length],64)+(it.badge?'<span class="mo-badge '+(it.featured?'mo-badge--solid':i===0?'mo-badge--success':'')+'">'+esc(it.badge)+'</span>':'')+'</div>'+
         '<h3 class="heading-m">'+esc(it.name)+'</h3><p class="body-s">'+esc(it.text)+'</p>'+
@@ -82,24 +71,24 @@ export function renderBody(c){
         '<div class="svc__price"><b class="num">'+esc(it.price)+'</b><span class="body-s">'+esc(it.priceNote)+'</span></div></article>').join('')
     }</div></section>
 
-    <section class="section" id="werkwijze" aria-labelledby="werkwijze-title">${crew('werkwijze')}${head(st,'werkwijze-title')}<ol class="steps">${
+    <section class="section" id="werkwijze" aria-labelledby="werkwijze-title">${head(st,'werkwijze-title')}<ol class="steps">${
       (st.items||[]).map((it,i)=>'<li class="step"><span class="step__n">Stap '+(i+1)+'</span><h3 class="heading-s">'+esc(it.title)+'</h3><p class="body-s">'+esc(it.text)+'</p>'+(it.when?'<span class="step__when">'+esc(it.when)+'</span>':'')+'</li>').join('')
     }</ol></section>
 
-    <section class="section" id="regie" aria-labelledby="regie-title">${crew('regie')}<div class="split"><div class="sec-head" style="margin-bottom:0"><p class="eyebrow">${esc(pr.eyebrow)}</p><h2 class="heading-l" id="regie-title">${esc(pr.title)}</h2><p class="body-l">${esc(pr.intro)}</p></div><ul class="principles">${
+    <section class="section" id="regie" aria-labelledby="regie-title"><div class="split"><div class="sec-head" style="margin-bottom:0"><p class="eyebrow">${esc(pr.eyebrow)}</p><h2 class="heading-l" id="regie-title">${esc(pr.title)}</h2><p class="body-l">${esc(pr.intro)}</p></div><ul class="principles">${
       (pr.items||[]).map((it,i)=>'<li>'+dot(Object.assign({interactive:false},SMALL[i%SMALL.length]),28)+'<div><h3 class="heading-s">'+esc(it.title)+'</h3><p class="body-s">'+esc(it.text)+'</p></div></li>').join('')
     }</ul></div></section>
 
-    <section class="section" id="case" aria-labelledby="case-title">${crew('case')}<div class="mo-card mo-card--padded case"><div class="case__body">
+    <section class="section" id="case" aria-labelledby="case-title"><div class="mo-card mo-card--padded case"><div class="case__body">
       <div style="display:flex;gap:var(--space-2);align-items:center;flex-wrap:wrap"><span class="mo-badge">${esc(cs.label)}</span><span class="body-s">${esc(cs.meta)}</span></div>
       <h2 class="mo-sr" id="case-title">${esc(cs.label)}</h2><p class="quote">"${esc(cs.quote)}"</p><p class="body-s">${esc(cs.source)}</p></div>
       <div class="stats">${(cs.stats||[]).map(x=>'<div class="stat"><b>'+esc(x.value)+'</b><span class="body-s">'+esc(x.label)+'</span></div>').join('')}</div></div></section>
 
-    <section class="section" id="vragen" aria-labelledby="vragen-title">${crew('vragen')}${head(f,'vragen-title')}<div class="faq">${
+    <section class="section" id="vragen" aria-labelledby="vragen-title">${head(f,'vragen-title')}<div class="faq">${
       (f.items||[]).map(it=>'<details><summary>'+esc(it.q)+ICON.plus+'</summary><p>'+esc(it.a)+'</p></details>').join('')
     }</div></section>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">${crew('contact')}
+    <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="contact">
         <div class="contact__intro">${dot({shape:'circle',color:'cobalt'},64)}
           <h2 class="heading-l" id="contact-title">${esc(ct.title)}</h2><p class="body-l">${esc(ct.intro)}</p>
@@ -122,7 +111,7 @@ export function renderBody(c){
   </div>
 </main>
 
-<footer class="foot">${crew('foot')}
+<footer class="foot">
   <div class="wrap foot__in"><span>${esc(c.footer.left)}</span><span>${esc(c.footer.right)}</span></div>
 </footer>`;
 }

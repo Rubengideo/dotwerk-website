@@ -36,7 +36,7 @@ ${headTags(seo, content)}
 ${read('src/site.css')}</style>
 </head>
 <body class="site">
-<canvas class="field" aria-hidden="true"></canvas>
+<div class="wash" aria-hidden="true"></div>
 ${renderBody(content)}
 <script src="/ds/vendor/react.production.min.js"></script>
 <script src="/ds/vendor/react-dom.production.min.js"></script>
